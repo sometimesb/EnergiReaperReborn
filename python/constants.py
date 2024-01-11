@@ -16,19 +16,27 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
 
-userSetProfit = "ARBRITRAGE DIFFERENCE YOUR LOOKING FOR USER MODE COINGECKO AS AN INT"
-stableSetProfit = "ARBRITRAGE DIFFERENCE YOUR LOOKING FOR USER MODE USD AS AN INT"
-BOT_TOKEN = "TOKEN OF YOUR BOT WITH QUOTES"
+# Set user-defined parameters
+userSetProfit = "ARBITRAGE DIFFERENCE YOU'RE LOOKING FOR IN USER MODE, COINGECKO AS AN INT"
+stableSetProfit = "ARBITRAGE DIFFERENCE YOU'RE LOOKING FOR IN USER MODE, USD AS AN INT"
+BOT_TOKEN = "YOUR BOT TOKEN WITH QUOTES"
 CG_ID = "ENTER YOUR COINGECKO DISCORD CHANNEL ID HERE WITHOUT QUOTES"
 USDE_ID = "ENTER YOUR USD DISCORD CHANNEL ID HERE WITHOUT QUOTES"
 LOG_LOCATION = "ENTER LOCATION OF YOUR LOG FILE PATH"
 
+# Initialize iteration counter
 IterationCounter = 0
+
+# Ignore DeprecationWarnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+# Set asyncio event loop policy for Windows
 asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
+# Initialize colorama
 colorama.init()
 
+# Configure logging settings
 logging.basicConfig(
     level=logging.ERROR,
     filename=LOG_LOCATION + ".txt",
@@ -36,8 +44,8 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
+# Define a mapping between API IDs and corresponding symbols
 NAME_ID_CONVERTER = [
-    # API ID, Symbol
     ["energi", "Wrapped NRG"],
     ["energi-dollar", "Energi Dollar"],
     ["dai", "Dai Stablecoin"],
@@ -46,9 +54,9 @@ NAME_ID_CONVERTER = [
     ["usd-coin", "USD Coin"],
 ]
 
+# List of stablecoin names
 STABLE_LIST = [
     "USDC", 
     "DAI", 
-    "USDE"]  # List of stablecoin names
-
-
+    "USDE"
+]
