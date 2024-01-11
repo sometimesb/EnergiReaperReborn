@@ -12,25 +12,16 @@ async def sendDiscordMessage(channel_id, message, bot_token):
             # Get the channel object for the desired channel ID
             channel = bot.get_channel(channel_id)
 
-            # Send the customized message to the channel
-            await channel.send(message)
+            if channel:
+                # Send the customized message to the channel
+                await channel.send(message)
+            else:
+                print(f"Error: Channel with ID {channel_id} not found.")
         except Exception as e:
-            print(f"An error occurred: {str(e)}")
+            print(f"An error occurred with the bot: {str(e)}")
         finally:
             # Stop the bot and close the event loop
             await bot.close()
-
-    # Run the bot using bot_token
-    try:
-        await bot.start(bot_token)
-    except Exception as e:
-        print(f"An error occurred while starting the bot: {str(e)}")
-
-    # Run the bot using bot_token
-    try:
-        await bot.start(bot_token)
-    except Exception as e:
-        print(f"An error occurred while starting the bot: {str(e)}")
 
 def SeleniumInitializer(driver, css_selector: str, timeout: int = 10):
     # Set the page load timeout for the WebDriver instance
